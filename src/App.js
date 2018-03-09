@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import styled, { injectGlobal } from 'styled-components'
+import Data from './Data.json'
+import Card from './Components/Card'
 import Nav from './Components/Nav'
 
 const color_primary = '#3B19C3'
@@ -13,6 +15,8 @@ injectGlobal`
     font-family: 'basic-sans', sans-serif;
     font-size: 20px;
     line-height: 1.3em;
+    width: 100%;
+    overflow-x: hidden;
   }
 
   a {
@@ -33,6 +37,23 @@ const Article = styled.article`
   margin-top: 50px;
 `
 
+const Title = styled.h3`
+  font-weight: 600;
+  font-size: 64px;
+  line-height: 1.3em;
+  flex: 100% 1;
+
+  @media screen and (max-width: 500px) {
+    font-size: 32px;
+  }
+`
+
+const Section = styled.section`
+  display: flex;
+  flex-flow: row wrap;
+  margin-top: 80px;
+`
+
 export default class App extends Component {
   render() {
     return (
@@ -50,6 +71,22 @@ export default class App extends Component {
             <p>Foutje of misinterpretatie? Neem contact op met <a href="mailto:oeps@vaalsstemt.nl">oeps@vaalsstemt.nl</a></p>
             <p>— Bob en Floor</p>
           </Article>
+          {
+            Data.map((d, i) => {
+              console.log(d)
+              return (
+                <Section key={`section-${i}`}>
+                  <Title>{d.title}</Title>
+                  <Card party="V&amp;O" data={d.vo} />
+                  <Card party="CDA" data={d.cda} />
+                  <Card party="Lokaal!" data={d.lokaal} />
+                  <Card party="PvdA" data={d.pvda} />
+                  <Card party="Het Alternatief" data={d.alternatief} />
+                  <Card party="Nuj Lies Vroemen" data={d.nuijlies} />
+                </Section>
+              )
+            })
+          }
         </Wrap>
       </div>
     )
