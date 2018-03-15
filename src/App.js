@@ -1,16 +1,18 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import styled, { injectGlobal } from 'styled-components'
 import Data from './Data.json'
 import Card from './Components/Card'
 import Nav from './Components/Nav'
+import Intro from './Data/intro'
 
 const color_primary = '#3B19C3'
+const color_light = '#F4F2FF'
 
 injectGlobal`
   @import url("https://use.typekit.net/gap5siv.css");
 
   body {
-    background-color: ${color_primary};
+    background-color: ${color_light};
     color: #fff;
     font-family: 'basic-sans', sans-serif;
     font-size: 20px;
@@ -25,16 +27,13 @@ injectGlobal`
 `
 
 const Wrap = styled.div`
-  width: 90%;
+  width: calc(90% - 250px);
+  margin: 2% auto 0 calc(250px + 5%);
+  box-sizing: border-box;
   display: block;
-  margin: 130px auto 0;
-`
-
-const Article = styled.article`
-  width: 90%;
-  max-width: 550px;
-  text-align: justify;
-  margin-top: 50px;
+  padding: 5%;
+  background-color: ${color_primary};
+  border-radius: 10px;
 `
 
 const Title = styled.h3`
@@ -42,6 +41,7 @@ const Title = styled.h3`
   font-size: 64px;
   line-height: 1.3em;
   flex: 100% 1;
+  margin: 0 0 5%;
 
   @media screen and (max-width: 500px) {
     font-size: 32px;
@@ -51,44 +51,57 @@ const Title = styled.h3`
 const Section = styled.section`
   display: flex;
   flex-flow: row wrap;
-  margin-top: 80px;
+  margin-bottom: 80px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 `
 
 export default class App extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      active: 'intro',
+      data: []
+    }
+  }
+
+  setActive(active) {
+    this.setState({
+      active
+    }, () => {
+      if (active !== 'intro') {
+        const data = require(`./Data/${active}.json`)
+        this.setState({
+          data
+        })
+      }
+    })
+  }
+
   render() {
     return (
-      <div>
-        <Nav />
+      <Fragment>
+        <Nav active={this.state.active} setActive={active => this.setActive(active)} />
         <Wrap>
-          <img
-            src={require('./Assets/vaals-stemt_logo.svg')}
-            alt="Vaals Stemt"
-            width={230}
-            height={158}
-            mode='fit' />
-          <Article>
-            <p>Op 21 maart vinden de gemeenteraadsverkiezingen weer plaats. Inwoners van de gemeente Vaals kunnen stemmen op een zestal partijen. Mijn zus, Floor, en ik hebben de partijprogramma’s voor jullie doorgenomen. Op deze microsite vergelijken we de programma’s van iedere partij, ingedeeld in de belangrijkste overeenkomende onderwerpen.</p>
-            <p>Foutje of misinterpretatie? Neem contact op met <a href="mailto:oeps@vaalsstemt.nl">oeps@vaalsstemt.nl</a></p>
-            <p>— Bob en Floor</p>
-          </Article>
-          {
-            Data.map((d, i) => {
-              console.log(d)
-              return (
-                <Section key={`section-${i}`}>
-                  <Title>{d.title}</Title>
-                  <Card party="V&amp;O" data={d.vo} />
-                  <Card party="CDA" data={d.cda} />
-                  <Card party="Lokaal!" data={d.lokaal} />
-                  <Card party="PvdA" data={d.pvda} />
-                  <Card party="Het Alternatief" data={d.alternatief} />
-                  <Card party="Nuj Lies Vroemen" data={d.nuijlies} />
-                </Section>
-              )
-            })
+          { this.state.active === 'intro' && <Intro /> }
+          { this.state.active !== 'intro' &&
+            this.state.data.map((module, i) => (
+              <Section key={`section-${i}`}>
+                <Title>{module.title}</Title>
+                <Card party="V&amp;O" data={module.vo} />
+                <Card party="CDA" data={module.cda} />
+                <Card party="Lokaal!" data={module.lokaal} />
+                <Card party="PvdA" data={module.pvda} />
+                <Card party="Het Alternatief" data={module.alternatief} />
+                <Card party="Nuj Lies Vroemen" data={module.nuijlies} />
+              </Section>
+            ))
           }
         </Wrap>
-      </div>
+      </Fragment>
     )
   }
 }

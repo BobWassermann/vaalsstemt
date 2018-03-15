@@ -4,27 +4,23 @@ import arrow from '../../Assets/icon__arrow-down.svg'
 
 const Navigation = styled.nav`
   position: fixed;
-  background-color: #F4F2FF;
   color: #4A20F5;
   top: 0;
   left: 0;
-  height: 55px;
-  width: 200px;
-  border-bottom-right-radius: 10px;
-  font-size: 16px;
+  height: 100vh;
+  width: 250px;
+  font-size: 14px;
+  font-weight: 600;
   display: flex;
   align-items: flex-start;
   z-index: 999;
+  padding-top: 2%;
 `
 
 const List = styled.div`
-  width: 150px;
-  height: ${props => props.open ? '300px' : '100%'};
-  border-bottom-left-radius: ${props => props.open ? '10px' : '0px'};
-  border-bottom-right-radius: ${props => props.open ? '10px' : '0px'};
+  width: 100%;
   transition: 0.3s ease-in;
-  text-align: center;
-  background: #fff;
+  text-align: left;
   z-index: 2;
   display: flex;
   flex-flow: row wrap;
@@ -35,75 +31,90 @@ const List = styled.div`
 const ListItem = styled.div`
   flex: 100% 1;
   cursor: pointer;
-  padding: 1em 0;
+  margin: 1px 5px;
+  padding: 10px;
+  border-radius: 5px;
+  background: ${props => props.active ? '#D4CBF5' : ''};
+  transition: 0.2s ease-in;
 
   &:hover {
-    background: #D4CBF5;
+    background: rgba(212, 203, 245, 0.7);
   }
-`
-
-const Arrow = styled.div`
-  width: 50px;
-  height: 100%;
-  background-image: url(${arrow});
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 15px;
-  transition: 0.3s ease-in;
-  z-index: 1;
-  transform: rotate(${props => props.open ? '-180' : '0'}deg);
 `
 
 const topics = [
   {
-    'key': 'intro',
-    'value': 'Intro'
+    "key": "intro",
+    "value": "Intro"
   },
   {
-    'key': 'tihange',
-    'value': 'Tihange'
+    "key": "duurzaamheid",
+    "value": "Duurzaamheid"
   },
   {
-    'key': 'groene-initiatieven',
-    'value': 'Groene initiatieven'
+    "key": "natuur_buitengebieden",
+    "value": "Natuur en buitengebieden"
   },
   {
-    'key': 'duurzaam-ondernemerschap',
-    'value': 'Duurzaam ondernemerschap'
+    "key": "veiligheid",
+    "value": "Veiligheid"
+  },
+  {
+    "key": "voorzieningen",
+    "value": "Voorzieningen"
+  },
+  {
+    "key": "toegankelijkheid",
+    "value": "Toegankelijkheid, begaanbaarheid en bereikbaarheid"
+  },
+  {
+    "key": "cultuur",
+    "value": "Cultuur, evenementen en jongeren"
+  },
+  {
+    "key": "financieel",
+    "value": "Financieel"
+  },
+  {
+    "key": "strategische_visie",
+    "value": "Strategische visie"
+  },
+  {
+    "key": "ondernemers_winkelaanbod",
+    "value": "Ondernemers en winkelaanbod"
+  },
+  {
+    "key": 'maatschappelijk',
+    "value": 'Maatschappelijk'
+  },
+  {
+    "key": 'participatie',
+    "value": 'Participatie'
+  },
+  {
+    "key": 'samenwerking',
+    "value": 'Samenwerking'
+  },
+  {
+    "key": 'educatie',
+    "value": 'Educatie'
   }
 ]
 
 export default class Nav extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      active: 'intro',
-      navOpen: false
-    }
-  }
-
-  toggleList() {
-    console.log('click')
-    this.setState({
-      navOpen: !this.state.navOpen
-    })
-  }
-
   render() {
     return (
-      <Navigation onClick={() => this.toggleList()}>
-        <List open={this.state.navOpen}>
-          {!this.state.navOpen &&
-            <span>{topics.filter(x => x.key === this.state.active)[0].value}</span>
-          }
-          {this.state.navOpen &&
-            topics.map(topic => (
-              <ListItem key={topic.key}>{topic.value}</ListItem>
-            ))
-          }
+      <Navigation>
+        <List>
+          {topics.map(topic => (
+              <ListItem
+                key={topic.key}
+                active={this.props.active === topic.key}
+                onClick={() => this.props.setActive(topic.key)}>
+                {topic.value}
+              </ListItem>
+          ))}
         </List>
-        <Arrow open={this.state.navOpen} />
       </Navigation>
     )
   }

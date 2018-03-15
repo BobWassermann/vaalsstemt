@@ -2,11 +2,9 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 const CardContainer = styled.div`
-  background: #fff;
   border-radius: 10px;
-  flex: 29% 1;
-  min-width: 200px;
-  color: #3B19C3;
+  flex: 100% 1;
+  color: #fff;
   font-size: 16px;
   line-height: 1.2em;
   padding: 25px;
@@ -35,7 +33,23 @@ export default class Card extends Component {
 
     return (
       <CardContainer>
-          {data}
+          {data.map((x, i) => {
+            switch(x.type) {
+              case 'p': {
+                return <p key={`module-${i}`}>{x.value}</p>
+              }
+
+              case 'list': {
+                return (
+                  <ul>
+                    {x.value.map((y, i) =>
+                      <li key={`list-${i}`}>{y}</li>
+                    )}
+                  </ul>
+                )
+              }
+            }
+          })}
           <Party>{party}</Party>
       </CardContainer>
     )
