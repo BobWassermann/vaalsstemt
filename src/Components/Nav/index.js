@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import topics from '../../topics'
 import styled from 'styled-components'
 
@@ -16,7 +16,15 @@ const Navigation = styled.nav`
   align-items: flex-start;
   z-index: 1;
   padding-top: 2%;
-  overflow-y: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: #F4F2FF;
+
+  @media screen and (max-width: 900px) {
+    display: ${props => props.mobileNavOpen ? 'block' : 'none'};
+    z-index: 999;
+    width: 100%;
+  }
 `
 
 const List = styled.div`
@@ -28,6 +36,10 @@ const List = styled.div`
   flex-flow: row wrap;
   align-items: center;
   justify-content: center;
+
+  @media screen and (max-width: 900px) {
+    width: 90%;
+  }
 `
 
 const ListItem = styled.div`
@@ -91,53 +103,61 @@ const Paragraph = styled.p`
   display: block;
   flex: 100% 1;
   margin: 1px 10px;
+
+  @media screen and (max-width: 900px) {
+    max-width: 90%;
+  }
 `
 
 export default class Nav extends Component {
   render() {
     return (
-      <Navigation>
-        <Title>Layouts</Title>
-        <Layouts>
-          <Layout active={this.props.activeLayout === 'threecol'} onClick={() => this.props.setActiveLayout('threecol')}>
-            <svg width='10' height='12' viewBox='0 0 10 12' xmlns='http://www.w3.org/2000/svg'>
-              <g id='Webdesign' fill='none' fillRule='evenodd' strokeLinecap='round'>
-                <g id='Group-5' transform='translate(-10 -9)' stroke={this.props.activeLayout === 'threecol' ? '#F4F2FF' : '#3B19C3'}>
-                  <g id='three-col' transform='translate(10 10)'>
-                    <path d='M1,0 L1,10' id='Line' />
-                    <path d='M5,0 L5,10' id='Line-Copy' />
-                    <path d='M9,0 L9,10' id='Line-Copy-2' />
+      <Navigation mobileNavOpen={this.props.mobileNavOpen}>
+        {window.innerWidth > 900 &&
+        <Fragment>
+          <Title>Layouts</Title>
+          <Layouts>
+            <Layout active={this.props.activeLayout === 'threecol'} onClick={() => this.props.setActiveLayout('threecol')}>
+              <svg width='10' height='12' viewBox='0 0 10 12' xmlns='http://www.w3.org/2000/svg'>
+                <g id='Webdesign' fill='none' fillRule='evenodd' strokeLinecap='round'>
+                  <g id='Group-5' transform='translate(-10 -9)' stroke={this.props.activeLayout === 'threecol' ? '#F4F2FF' : '#3B19C3'}>
+                    <g id='three-col' transform='translate(10 10)'>
+                      <path d='M1,0 L1,10' id='Line' />
+                      <path d='M5,0 L5,10' id='Line-Copy' />
+                      <path d='M9,0 L9,10' id='Line-Copy-2' />
+                    </g>
                   </g>
                 </g>
-              </g>
-            </svg>
-          </Layout>
-          <Layout active={this.props.activeLayout === 'twocol'} onClick={() => this.props.setActiveLayout('twocol')}>
-            <svg width='8' height='12' viewBox='0 0 8 12' xmlns='http://www.w3.org/2000/svg'>
-              <g id='Webdesign' fill='none' fillRule='evenodd' strokeLinecap='round'>
-                <g id='Group-4' transform='translate(-11 -9)' stroke={this.props.activeLayout === 'twocol' ? '#F4F2FF' : '#3B19C3'}>
-                  <g id='two-col' transform='translate(11 10)'>
-                    <path d='M1,0 L1,10' id='Line' />
-                    <path d='M7,0 L7,10' id='Line-Copy-2' />
+              </svg>
+            </Layout>
+            <Layout active={this.props.activeLayout === 'twocol'} onClick={() => this.props.setActiveLayout('twocol')}>
+              <svg width='8' height='12' viewBox='0 0 8 12' xmlns='http://www.w3.org/2000/svg'>
+                <g id='Webdesign' fill='none' fillRule='evenodd' strokeLinecap='round'>
+                  <g id='Group-4' transform='translate(-11 -9)' stroke={this.props.activeLayout === 'twocol' ? '#F4F2FF' : '#3B19C3'}>
+                    <g id='two-col' transform='translate(11 10)'>
+                      <path d='M1,0 L1,10' id='Line' />
+                      <path d='M7,0 L7,10' id='Line-Copy-2' />
+                    </g>
                   </g>
                 </g>
-              </g>
-            </svg>
-          </Layout>
-          <Layout active={this.props.activeLayout === 'underneath'} onClick={() => this.props.setActiveLayout('underneath')}>
-            <svg width='12' height='10' viewBox='0 0 12 10' xmlns='http://www.w3.org/2000/svg'>
-              <g id='Webdesign' fill='none' fillRule='evenodd' strokeLinecap='round'>
-                <g id='Group-3' transform='translate(-9 -10)' stroke={this.props.activeLayout === 'underneath' ? '#F4F2FF' : '#3B19C3'}>
-                  <g id='underneath' transform='rotate(90 5 15)'>
-                    <path d='M1,0 L1,10' id='Line' />
-                    <path d='M5,0 L5,10' id='Line-Copy' />
-                    <path d='M9,0 L9,10' id='Line-Copy-2' />
+              </svg>
+            </Layout>
+            <Layout active={this.props.activeLayout === 'underneath'} onClick={() => this.props.setActiveLayout('underneath')}>
+              <svg width='12' height='10' viewBox='0 0 12 10' xmlns='http://www.w3.org/2000/svg'>
+                <g id='Webdesign' fill='none' fillRule='evenodd' strokeLinecap='round'>
+                  <g id='Group-3' transform='translate(-9 -10)' stroke={this.props.activeLayout === 'underneath' ? '#F4F2FF' : '#3B19C3'}>
+                    <g id='underneath' transform='rotate(90 5 15)'>
+                      <path d='M1,0 L1,10' id='Line' />
+                      <path d='M5,0 L5,10' id='Line-Copy' />
+                      <path d='M9,0 L9,10' id='Line-Copy-2' />
+                    </g>
                   </g>
                 </g>
-              </g>
-            </svg>
-          </Layout>
-        </Layouts>
+              </svg>
+            </Layout>
+          </Layouts>
+        </Fragment>
+        }
 
         <Title>Voorkeur</Title>
         {this.props.counter.vo !== 0 &&

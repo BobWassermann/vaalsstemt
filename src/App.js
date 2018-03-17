@@ -19,6 +19,7 @@ injectGlobal`
     line-height: 1.3em;
     width: 100%;
     overflow-x: hidden;
+    margin: 0;
   }
 
   a {
@@ -31,6 +32,11 @@ const Wrap = styled.div`
   margin: 2% auto 0 calc(250px + 2%);
   box-sizing: border-box;
   display: block;
+
+  @media screen and (max-width: 900px) {
+    width: 98%;
+    margin: 2% auto;
+  }
 `
 
 const Title = styled.h3`
@@ -60,6 +66,29 @@ const Section = styled.section`
   &:last-child {
     margin-bottom: 0;
   }
+
+  @media screen and (max-width: 900px) {
+    padding: 20px;
+  }
+`
+
+const NavToggle = styled.div`
+  position: fixed;
+  background: ${color_primary};
+  width: 50px;
+  height: 50px;
+  border-radius: 180px;
+  z-index: 999;
+  top: 5%;
+  right: 5%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media screen and (min-width: 901px) {
+    display: none;
+  }
 `
 
 export default class App extends Component {
@@ -78,7 +107,8 @@ export default class App extends Component {
         alternatief: 0,
         nujlies: 0
       },
-      data: []
+      data: [],
+      mobileNavOpen: false
     }
   }
 
@@ -105,6 +135,10 @@ export default class App extends Component {
     ) {
       this.setActive(path, topics.filter(x => x.key === path)[0].value)
     }
+
+    if (window.innerWidth < 900) {
+      this.setActiveLayout('underneath')
+    }
   }
 
   setActive(active, t) {
@@ -114,13 +148,17 @@ export default class App extends Component {
       if (active !== 'intro') {
         const data = require(`./Data/${active}.json`)
         this.setState({
-          data
+          data,
+          mobileNavOpen: false
         }, () => {
           window.history.pushState({}, null, active)
           window.scrollTo(0, 0)
           document.title = `${t} — ${document.title}`
         })
       } else {
+        this.setState({
+          mobileNavOpen: false
+        })
         window.history.pushState({}, null, '/')
         window.scrollTo(0, 0)
         document.title = 'Vaals Stemt'
@@ -181,8 +219,14 @@ export default class App extends Component {
     }
   }
 
+  toggleMobileNav() {
+    this.setState({
+      mobileNavOpen: !this.state.mobileNavOpen
+    })
+  }
+
   render() {
-    const { active, activeCards, activeLayout, counter, data } = this.state
+    const { active, activeCards, activeLayout, counter, data, mobileNavOpen } = this.state
 
     return (
       <Fragment>
@@ -190,8 +234,23 @@ export default class App extends Component {
           active={active}
           activeLayout={activeLayout}
           counter={counter}
+          mobileNavOpen={mobileNavOpen}
           setActive={(active, title) => this.setActive(active, title)}
           setActiveLayout={layout => this.setActiveLayout(layout)} />
+
+        <NavToggle onClick={() => this.toggleMobileNav()}>
+          <svg width='12' height='10' viewBox='0 0 12 10' xmlns='http://www.w3.org/2000/svg'>
+            <g id='Webdesign' fill='none' fillRule='evenodd' strokeLinecap='round'>
+              <g id='Group-3' transform='translate(-9 -10)' stroke='#fff'>
+                <g id='underneath' transform='rotate(90 5 15)'>
+                  <path d='M1,0 L1,10' id='Line' />
+                  <path d='M5,0 L5,10' id='Line-Copy' />
+                  <path d='M9,0 L9,10' id='Line-Copy-2' />
+                </g>
+              </g>
+            </g>
+          </svg>
+        </NavToggle>
 
         <Wrap>
           { active === 'intro' &&
@@ -209,9 +268,9 @@ export default class App extends Component {
                   cardIndex={i}
                   party="V&amp;O"
                   data={module.vo}
-                  activeCards={this.state.activeCards}
-                  activeLayout={this.state.activeLayout}
-                  activeTopic={this.state.active}
+                  activeCards={activeCards}
+                  activeLayout={activeLayout}
+                  activeTopic={active}
                   setPicker={(card, party, topic) => this.setPicker(card, party, topic)} />
 
                 <Card
@@ -219,9 +278,9 @@ export default class App extends Component {
                   cardIndex={i}
                   party="CDA"
                   data={module.cda}
-                  activeCards={this.state.activeCards}
-                  activeLayout={this.state.activeLayout}
-                  activeTopic={this.state.active}
+                  activeCards={activeCards}
+                  activeLayout={activeLayout}
+                  activeTopic={active}
                   setPicker={(card, party, topic) => this.setPicker(card, party, topic)} />
 
                 <Card
@@ -229,9 +288,9 @@ export default class App extends Component {
                   cardIndex={i}
                   party="Lokaal!"
                   data={module.lokaal}
-                  activeCards={this.state.activeCards}
-                  activeLayout={this.state.activeLayout}
-                  activeTopic={this.state.active}
+                  activeCards={activeCards}
+                  activeLayout={activeLayout}
+                  activeTopic={active}
                   setPicker={(card, party, topic) => this.setPicker(card, party, topic)} />
 
                 <Card
@@ -239,9 +298,9 @@ export default class App extends Component {
                   cardIndex={i}
                   party="PvdA"
                   data={module.pvda}
-                  activeCards={this.state.activeCards}
-                  activeLayout={this.state.activeLayout}
-                  activeTopic={this.state.active}
+                  activeCards={activeCards}
+                  activeLayout={activeLayout}
+                  activeTopic={active}
                   setPicker={(card, party, topic) => this.setPicker(card, party, topic)} />
 
                 <Card
@@ -249,9 +308,9 @@ export default class App extends Component {
                   cardIndex={i}
                   party="Het Alternatief"
                   data={module.alternatief}
-                  activeCards={this.state.activeCards}
-                  activeLayout={this.state.activeLayout}
-                  activeTopic={this.state.active}
+                  activeCards={activeCards}
+                  activeLayout={activeLayout}
+                  activeTopic={active}
                   setPicker={(card, party, topic) => this.setPicker(card, party, topic)} />
 
                 <Card
@@ -259,9 +318,9 @@ export default class App extends Component {
                   cardIndex={i}
                   party="Nuj Lies Vroemen"
                   data={module.nuijlies}
-                  activeCards={this.state.activeCards}
-                  activeLayout={this.state.activeLayout}
-                  activeTopic={this.state.active}
+                  activeCards={activeCards}
+                  activeLayout={activeLayout}
+                  activeTopic={active}
                   setPicker={(card, party, topic) => this.setPicker(card, party, topic)} />
 
               </Section>
