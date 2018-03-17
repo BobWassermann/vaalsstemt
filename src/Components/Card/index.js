@@ -34,10 +34,25 @@ export default class Card extends Component {
   render() {
     const { activeCards, activeLayout, activeTopic, cardIndex, data, party, setPicker } = this.props
     let active = false
+    let p = ''
+
+    if (party === 'V&O') {
+      p = 'vo'
+    } else if (party === 'CDA') {
+      p = 'cda'
+    } else if (party === 'Lokaal!') {
+      p = 'lokaal'
+    } else if (party === 'PvdA') {
+      p = 'pvda'
+    } else if (party === 'Het Alternatief') {
+      p = 'alternatief'
+    } else if (party === 'Nuj Lies Vroemen') {
+      p = 'nujlies'
+    }
 
     if (activeCards.hasOwnProperty(activeTopic)) {
       if (activeCards[activeTopic].hasOwnProperty(cardIndex)) {
-        if (activeCards[activeTopic][cardIndex] === party) {
+        if (activeCards[activeTopic][cardIndex] === p) {
           active = true
         }
       }
@@ -54,7 +69,7 @@ export default class Card extends Component {
       <CardContainer
         active={active}
         colWidth={colWidth}
-        onClick={() => setPicker(cardIndex, party, activeTopic)}>
+        onClick={() => setPicker(cardIndex, p, activeTopic)}>
         <Party>{party}</Party>
         <Content>
           {data.length === 0 &&

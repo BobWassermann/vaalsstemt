@@ -70,6 +70,14 @@ export default class App extends Component {
       active: 'intro',
       activeCards: localStorage.getItem('vaalsStemt_activeCards') ? JSON.parse(localStorage.getItem('vaalsStemt_activeCards')) : {},
       activeLayout: localStorage.getItem('vaalsStemt_activeLayout') || 'threecol',
+      counter: localStorage.getItem('vaalsStemt_counter') ? JSON.parse(localStorage.getItem('vaalsStemt_counter')) : {
+        vo: 0,
+        cda: 0,
+        lokaal: 0,
+        pvda: 0,
+        alternatief: 0,
+        nujlies: 0
+      },
       data: []
     }
   }
@@ -135,11 +143,28 @@ export default class App extends Component {
       this.state.activeCards[topic][card] === party
     ) {
       let activeCards = this.state.activeCards
+      let counter = this.state.counter[party]
       delete activeCards[topic][card]
-      this.setState({ activeCards }, () => {
+      this.setState({
+        activeCards,
+        counter: {
+          ...this.state.counter,
+          [party]: this.state.counter[party] - 1
+        }
+      }, () => {
         localStorage.setItem('vaalsStemt_activeCards', JSON.stringify(this.state.activeCards))
+        localStorage.setItem('vaalsStemt_counter', JSON.stringify(this.state.counter))
       })
     } else {
+      let counter = this.state.counter
+      counter[party] = this.state.counter[party] + 1
+      if (
+        this.state.activeCards.hasOwnProperty(topic) &&
+        this.state.activeCards[topic].hasOwnProperty(card)
+      ) {
+        counter[this.state.activeCards[topic][card]] = counter[this.state.activeCards[topic][card]] - 1
+      }
+
       this.setState({
         activeCards: {
           ...this.state.activeCards,
@@ -147,21 +172,24 @@ export default class App extends Component {
             ...this.state.activeCards[topic],
             [card]: party
           }
-        }
+        },
+        counter: counter
       }, () => {
         localStorage.setItem('vaalsStemt_activeCards', JSON.stringify(this.state.activeCards))
+        localStorage.setItem('vaalsStemt_counter', JSON.stringify(this.state.counter))
       })
     }
   }
 
   render() {
-    const { active, activeLayout, data } = this.state
+    const { active, activeCards, activeLayout, counter, data } = this.state
 
     return (
       <Fragment>
         <Nav
           active={active}
           activeLayout={activeLayout}
+          counter={counter}
           setActive={(active, title) => this.setActive(active, title)}
           setActiveLayout={layout => this.setActiveLayout(layout)} />
 

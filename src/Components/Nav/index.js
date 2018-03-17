@@ -87,6 +87,12 @@ const SocialIcon = styled.a`
   }
 `
 
+const Paragraph = styled.p`
+  display: block;
+  flex: 100% 1;
+  margin: 1px 10px;
+`
+
 export default class Nav extends Component {
   render() {
     return (
@@ -134,7 +140,35 @@ export default class Nav extends Component {
         </Layouts>
 
         <Title>Voorkeur</Title>
-        <p>V&amp;O: 10</p>
+        {this.props.counter.vo !== 0 &&
+          <Paragraph>V&amp;O: {this.props.counter.vo}</Paragraph>
+        }
+        {this.props.counter.cda !== 0 &&
+          <Paragraph>CDA: {this.props.counter.cda}</Paragraph>
+        }
+        {this.props.counter.lokaal !== 0 &&
+          <Paragraph>Lokaal!: {this.props.counter.lokaal}</Paragraph>
+        }
+        {this.props.counter.pvda !== 0 &&
+          <Paragraph>PvdA: {this.props.counter.pvda}</Paragraph>
+        }
+        {this.props.counter.alternatief !== 0 &&
+          <Paragraph>Het Alternatief: {this.props.counter.alternatief}</Paragraph>
+        }
+        {this.props.counter.nujlies !== 0 &&
+          <Paragraph>Nuj Lies Vroemen: {this.props.counter.nujlies}</Paragraph>
+        }
+        {
+          (
+            this.props.counter.vo === 0 &&
+            this.props.counter.cda === 0 &&
+            this.props.counter.lokaal === 0 &&
+            this.props.counter.pvda === 0 &&
+            this.props.counter.alternatief === 0 &&
+            this.props.counter.nujlies === 0
+          ) &&
+          <Paragraph>Nog geen voorkeur. Tik op de partijcitaten waar je het mee eens bent.</Paragraph>
+        }
 
         <Title>Onderwerpen</Title>
         <List>
