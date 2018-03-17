@@ -175,13 +175,6 @@ export default class App extends Component {
   }
 
   setPicker(card, party, topic) {
-    window.ga('send', {
-      hitType: 'picker',
-      eventCategory: topic,
-      eventAction: party,
-      eventLabel: card
-    })
-
     if (
       this.state.activeCards.hasOwnProperty(topic) &&
       this.state.activeCards[topic].hasOwnProperty(card) &&
