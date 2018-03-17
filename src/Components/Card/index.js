@@ -5,9 +5,10 @@ const CardContainer = styled.div`
   border-radius: 10px;
   display: flex;
   flex-flow: row wrap;
-  flex: 30% 1;
-  max-width: 30%;
-  color: #3B19C3;
+  background-color: ${props => props.active ? '#3B19C3' : '#fff'};
+  flex: ${props => props.colWidth ? `${props.colWidth} 1` : '31% 1' };
+  max-width: ${props => props.colWidth || '31%'};
+  color: ${props => props.active ? '#fff' : '#3B19C3'};
   font-size: 16px;
   line-height: 1.4em;
   padding: 25px;
@@ -31,10 +32,29 @@ const Content = styled.div`
 
 export default class Card extends Component {
   render() {
-    const { data, party } = this.props
+    const { activeCards, activeLayout, activeTopic, cardIndex, data, party, setPicker } = this.props
+    let active = false
+
+    if (activeCards.hasOwnProperty(activeTopic)) {
+      if (activeCards[activeTopic].hasOwnProperty(cardIndex)) {
+        if (activeCards[activeTopic][cardIndex] === party) {
+          active = true
+        }
+      }
+    }
+
+    let colWidth = '31%'
+    if (activeLayout === 'twocol') {
+      colWidth = '48%'
+    } else if (activeLayout === 'underneath') {
+      colWidth = '100%'
+    }
 
     return (
-      <CardContainer>
+      <CardContainer
+        active={active}
+        colWidth={colWidth}
+        onClick={() => setPicker(cardIndex, party, activeTopic)}>
         <Party>{party}</Party>
         <Content>
           {data.length === 0 &&

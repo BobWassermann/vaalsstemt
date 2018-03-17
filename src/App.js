@@ -54,6 +54,8 @@ const Section = styled.section`
   background-color: #fff;
   border: 1px solid ${color_primary};
   border-radius: 10px;
+  z-index: 10;
+  position: relative;
 
   &:last-child {
     margin-bottom: 0;
@@ -66,6 +68,8 @@ export default class App extends Component {
 
     this.state = {
       active: 'intro',
+      activeCards: localStorage.getItem('vaalsStemt_activeCards') ? JSON.parse(localStorage.getItem('vaalsStemt_activeCards')) : {},
+      activeLayout: localStorage.getItem('vaalsStemt_activeLayout') || 'threecol',
       data: []
     }
   }
@@ -116,12 +120,50 @@ export default class App extends Component {
     })
   }
 
+  setActiveLayout(activeLayout) {
+    this.setState({
+      activeLayout
+    }, () => {
+      localStorage.setItem('vaalsStemt_activeLayout', activeLayout)
+    })
+  }
+
+  setPicker(card, party, topic) {
+    if (
+      this.state.activeCards.hasOwnProperty(topic) &&
+      this.state.activeCards[topic].hasOwnProperty(card) &&
+      this.state.activeCards[topic][card] === party
+    ) {
+      let activeCards = this.state.activeCards
+      delete activeCards[topic][card]
+      this.setState({ activeCards }, () => {
+        localStorage.setItem('vaalsStemt_activeCards', JSON.stringify(this.state.activeCards))
+      })
+    } else {
+      this.setState({
+        activeCards: {
+          ...this.state.activeCards,
+          [topic]: {
+            ...this.state.activeCards[topic],
+            [card]: party
+          }
+        }
+      }, () => {
+        localStorage.setItem('vaalsStemt_activeCards', JSON.stringify(this.state.activeCards))
+      })
+    }
+  }
+
   render() {
-    const { active, data } = this.state
+    const { active, activeLayout, data } = this.state
 
     return (
       <Fragment>
-        <Nav active={active} setActive={(active, title) => this.setActive(active, title)} />
+        <Nav
+          active={active}
+          activeLayout={activeLayout}
+          setActive={(active, title) => this.setActive(active, title)}
+          setActiveLayout={layout => this.setActiveLayout(layout)} />
 
         <Wrap>
           { active === 'intro' &&
@@ -136,33 +178,63 @@ export default class App extends Component {
                 <Title>{module.title}</Title>
                 <Card
                   key={`card-${i}-party-vo`}
+                  cardIndex={i}
                   party="V&amp;O"
-                  data={module.vo} />
+                  data={module.vo}
+                  activeCards={this.state.activeCards}
+                  activeLayout={this.state.activeLayout}
+                  activeTopic={this.state.active}
+                  setPicker={(card, party, topic) => this.setPicker(card, party, topic)} />
 
                 <Card
                   key={`card-${i}-party-cda`}
+                  cardIndex={i}
                   party="CDA"
-                  data={module.cda} />
+                  data={module.cda}
+                  activeCards={this.state.activeCards}
+                  activeLayout={this.state.activeLayout}
+                  activeTopic={this.state.active}
+                  setPicker={(card, party, topic) => this.setPicker(card, party, topic)} />
 
                 <Card
                   key={`card-${i}-party-lokaal`}
+                  cardIndex={i}
                   party="Lokaal!"
-                  data={module.lokaal} />
+                  data={module.lokaal}
+                  activeCards={this.state.activeCards}
+                  activeLayout={this.state.activeLayout}
+                  activeTopic={this.state.active}
+                  setPicker={(card, party, topic) => this.setPicker(card, party, topic)} />
 
                 <Card
                   key={`card-${i}-party-pvda`}
+                  cardIndex={i}
                   party="PvdA"
-                  data={module.pvda} />
+                  data={module.pvda}
+                  activeCards={this.state.activeCards}
+                  activeLayout={this.state.activeLayout}
+                  activeTopic={this.state.active}
+                  setPicker={(card, party, topic) => this.setPicker(card, party, topic)} />
 
                 <Card
                   key={`card-${i}-party-alternatief`}
+                  cardIndex={i}
                   party="Het Alternatief"
-                  data={module.alternatief} />
+                  data={module.alternatief}
+                  activeCards={this.state.activeCards}
+                  activeLayout={this.state.activeLayout}
+                  activeTopic={this.state.active}
+                  setPicker={(card, party, topic) => this.setPicker(card, party, topic)} />
 
                 <Card
                   key={`card-${i}-party-nujlies`}
+                  cardIndex={i}
                   party="Nuj Lies Vroemen"
-                  data={module.nuijlies} />
+                  data={module.nuijlies}
+                  activeCards={this.state.activeCards}
+                  activeLayout={this.state.activeLayout}
+                  activeTopic={this.state.active}
+                  setPicker={(card, party, topic) => this.setPicker(card, party, topic)} />
 
               </Section>
             ))
