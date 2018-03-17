@@ -99,6 +99,10 @@ const SocialIcon = styled.a`
   }
 `
 
+const SocialIcons = styled.div`
+  display: flex;
+`
+
 const Paragraph = styled.p`
   display: block;
   flex: 100% 1;
@@ -222,33 +226,44 @@ export default class Nav extends Component {
         </List>
 
         <Title>Delen</Title>
-        <SocialIcon href="">
-          <img
-            src={require('../../Assets/social-icons/facebook.svg')}
-            height={20}
-            alt="Facebook icon" />
-        </SocialIcon>
+        <SocialIcons>
+          <SocialIcon
+            href="https://www.facebook.com/sharer/sharer.php?u=https%3A//vaalsstemt.nl/"
+            target="_blank">
+            <img
+              src={require('../../Assets/social-icons/facebook.svg')}
+              height={20}
+              alt="Facebook icon" />
+          </SocialIcon>
 
-        <SocialIcon href="">
-          <img
-            src={require('../../Assets/social-icons/twitter.svg')}
-            height={20}
-            alt="Twitter icon" />
-        </SocialIcon>
+          <SocialIcon
+            href="https://twitter.com/home?status=Bekijk%20Vaals%20Stemt%3A%20https%3A//vaalsstemt.nl"
+            target="_blank">
+            <img
+              src={require('../../Assets/social-icons/twitter.svg')}
+              height={20}
+              alt="Twitter icon" />
+          </SocialIcon>
 
-        <SocialIcon href="">
-          <img
-            src={require('../../Assets/social-icons/whatsapp.svg')}
-            height={20}
-            alt="Whatsapp icon" />
-        </SocialIcon>
+          <SocialIcon
+            href="whatsapp://send?text=Bekijk%20Vaals%20Stemt%3A%20https%3A//vaalsstemt.nl">
+            <img
+              src={require('../../Assets/social-icons/whatsapp.svg')}
+              height={20}
+              alt="Whatsapp icon" />
+          </SocialIcon>
 
-        <SocialIcon href="">
-          <img
-            src={require('../../Assets/social-icons/email.svg')}
-            height={18}
-            alt="Email icon" />
-        </SocialIcon>
+          <SocialIcon
+            href="mailto:?&body=Bekijk%20Vaals%20Stemt%3A%20https%3A//vaalsstemt.nl">
+            <img
+              src={require('../../Assets/social-icons/email.svg')}
+              height={18}
+              alt="Email icon" />
+          </SocialIcon>
+        </SocialIcons>
+        <div style={{
+          height: 100
+        }} />
       </Navigation>
     )
   }
