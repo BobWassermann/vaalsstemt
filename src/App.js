@@ -3,6 +3,7 @@ import styled, { injectGlobal } from 'styled-components'
 import Card from './Components/Card'
 import Nav from './Components/Nav'
 import Intro from './Data/intro'
+import topics from './topics'
 
 const color_primary = '#3B19C3'
 const color_light = '#F4F2FF'
@@ -90,7 +91,7 @@ export default class App extends Component {
         path === 'educatie'
       )
     ) {
-      this.setActive(path)
+      this.setActive(path, topics.filter(x => x.key === path)[0].value)
     }
   }
 
