@@ -68,6 +68,29 @@ export default class App extends Component {
     }
   }
 
+  componentDidMount() {
+    const path = window.location.pathname.replace('/', '')
+    if (
+      path &&
+      path === 'intro' ||
+      path === 'duurzaamheid' ||
+      path === 'natuur_buitengebieden' ||
+      path === 'veiligheid' ||
+      path === 'voorzieningen' ||
+      path === 'toegankelijkheid' ||
+      path === 'cultuur' ||
+      path === 'financieel' ||
+      path === 'strategische_visie' ||
+      path === 'ondernemers_winkelaanbod' ||
+      path === 'maatschappelijk' ||
+      path === 'participatie' ||
+      path === 'samenwerking' ||
+      path === 'educatie'
+    ) {
+      this.setActive(path)
+    }
+  }
+
   setActive(active) {
     this.setState({
       active
@@ -76,7 +99,9 @@ export default class App extends Component {
         const data = require(`./Data/${active}.json`)
         this.setState({
           data
-        })
+        }, () => window.history.pushState({}, null, active))
+      } else {
+        window.history.pushState({}, null, '/')
       }
     })
   }

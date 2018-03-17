@@ -3,6 +3,8 @@ import styled from 'styled-components'
 
 const CardContainer = styled.div`
   border-radius: 10px;
+  display: flex;
+  flex-flow: row wrap;
   flex: 100% 1;
   color: #fff;
   font-size: 16px;
@@ -12,19 +14,15 @@ const CardContainer = styled.div`
   margin: 2%;
   position: relative;
   padding-bottom: 80px;
-
-  @media screen and (max-width: 450px) {
-    flex: 100% 1;
-  }
 `
 
 const Party = styled.p`
   font-weight: 900;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
+  flex: 20% 1;
+`
+
+const Content = styled.div`
+  flex: 80% 1;
 `
 
 export default class Card extends Component {
@@ -33,6 +31,8 @@ export default class Card extends Component {
 
     return (
       <CardContainer>
+        <Party>{party}</Party>
+        <Content>
           {data.map((x, i) => {
             switch(x.type) {
               case 'p': {
@@ -50,7 +50,7 @@ export default class Card extends Component {
               }
             }
           })}
-          <Party>{party}</Party>
+        </Content>
       </CardContainer>
     )
   }
