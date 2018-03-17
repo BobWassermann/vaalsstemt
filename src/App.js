@@ -225,6 +225,28 @@ export default class App extends Component {
     })
   }
 
+  resetCounters() {
+    let r = window.confirm("Weet je zeker dat je alle voorkeuren wel resetten naar 0?")
+    if (r === true) {
+      this.setState({
+        activeCards: {},
+        counter: {
+          vo: 0,
+          cda: 0,
+          lokaal: 0,
+          pvda: 0,
+          alternatief: 0,
+          nujlies: 0
+        }
+      }, () => {
+        localStorage.setItem('vaalsStemt_activeCards', JSON.stringify(this.state.activeCards))
+        localStorage.setItem('vaalsStemt_counter', JSON.stringify(this.state.counter))
+      })
+    } else {
+      console.log('User cancelled')
+    }
+  }
+
   render() {
     const { active, activeCards, activeLayout, counter, data, mobileNavOpen } = this.state
 
@@ -235,6 +257,7 @@ export default class App extends Component {
           activeLayout={activeLayout}
           counter={counter}
           mobileNavOpen={mobileNavOpen}
+          resetCounters={() => this.resetCounters()}
           setActive={(active, title) => this.setActive(active, title)}
           setActiveLayout={layout => this.setActiveLayout(layout)} />
 

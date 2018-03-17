@@ -105,8 +105,14 @@ const Paragraph = styled.p`
   margin: 1px 10px;
 
   @media screen and (max-width: 900px) {
-    max-width: 90%;
+    max-width: 70%;
   }
+`
+
+const ResetAllCounters = styled.p`
+  cursor: pointer;
+  text-decoration: underline;
+  margin: 1px 10px;
 `
 
 export default class Nav extends Component {
@@ -188,6 +194,19 @@ export default class Nav extends Component {
             this.props.counter.nujlies === 0
           ) &&
           <Paragraph>Nog geen voorkeur. Tik op de partijcitaten waar je het mee eens bent.</Paragraph>
+        }
+        {
+          (
+            this.props.counter.vo !== 0 ||
+            this.props.counter.cda !== 0 ||
+            this.props.counter.lokaal !== 0 ||
+            this.props.counter.pvda !== 0 ||
+            this.props.counter.alternatief !== 0 ||
+            this.props.counter.nujlies !== 0
+          ) &&
+          <ResetAllCounters onClick={() => this.props.resetCounters()}>
+            Voorkeuren resetten
+          </ResetAllCounters>
         }
 
         <Title>Onderwerpen</Title>
