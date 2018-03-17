@@ -2,10 +2,12 @@ import React, { Component, Fragment } from 'react'
 import styled from 'styled-components'
 
 const Article = styled.article`
+  flex: 100% 1;
   width: 90%;
   max-width: 550px;
   text-align: justify;
   margin-top: 50px;
+  display: block;
 `
 
 export default class Intro extends Component {

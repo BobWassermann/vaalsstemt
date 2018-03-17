@@ -1,24 +1,14 @@
 [
   {
-    "title": "Algemeen",
+    "title": "Duurzaamheid",
     "cda": [
       {
         "type": "p",
         "value": "Burgers van gemeente Vaals die voor hun woning duurzame energiesystemen willen aanschaffen, of energiebesparende maatregelen treffen kunnen in aanmerking komen voor een gemeentelijke subsidie."
       }
     ],
-    "lokaal": [
-      {
-        "type": "p",
-        "value": "Niet bekend gemaakt in partijprogramma."
-      }
-    ],
-    "nuijlies": [
-      {
-        "type": "p",
-        "value": "Niet bekend gemaakt in partijprogramma."
-      }
-    ],
+    "lokaal": [],
+    "nuijlies": [],
     "pvda": [
       {
         "type": "p",
@@ -47,9 +37,7 @@
     "vo": [
       {
         "type": "p",
-        "value": [
-          "We pleiten voor duurzaamheidsbeleid op zoveel mogelijk gebieden."
-        ]
+        "value": "We pleiten voor duurzaamheidsbeleid op zoveel mogelijk gebieden."
       }
     ]
   },
@@ -61,18 +49,8 @@
         "value": "Samen met de partners uit de (Eu)regio en Provincie dienen alle mogelijke middelen, steeds opnieuw, aangegrepen te worden om tot sluiting van de kerncentrales te Tihange te komen."
       }
     ],
-    "lokaal": [
-      {
-        "type": "p",
-        "value": "Niet bekend gemaakt in partijprogramma."
-      }
-    ],
-    "nuijlies": [
-      {
-        "type": "p",
-        "value": "Niet bekend gemaakt in partijprogramma."
-      }
-    ],
+    "lokaal": [],
+    "nuijlies": [],
     "pvda": [
       {
         "type": "p",
@@ -95,5 +73,53 @@
         "value": "V&O zal alert blijven op dit onderwerp."
       }
     ]
+  },
+  {
+    "title": "Duurzaam ondernemerschap",
+    "cda": [
+      {
+        "type": "p",
+        "value": "Lokaal ondernemerschap binnen de eigen gemeentegrenzen moet gepromoot, gestimuleerd en gefaciliteerd worden. Lokale ondernemers dienen bij gemeentelijke aanbestedingen zo veel als mogelijk te prevaleren boven niet-lokale ondernemers. Lokale producten moeten algemeen verkrijgbaar en prijstechnisch en kwalitatief concurrerend worden voor alle inwoners. Hiermee worden ook onnodige verkeersbewegingen én milieubelasting voorkomen."
+      }
+    ],
+    "lokaal": [
+      {
+        "type": "p",
+        "value": "In het voorjaar van 2018 wordt in Vaals een ruilwinkel geopend. Deze zou de komende twee jaar mede tot doel moeten hebben inwoners te betrekken bij delen, huren, tweedehands kopen en repareren."
+      }
+    ],
+    "nuijlies": [
+      {
+        "type": "p",
+        "value": "Wat dichtbij te krijgen is, hoeft van ver te komen. Trots zijn op producten uit eigen streek en werk uit eigen handen."
+      }
+    ],
+    "pvda": [
+      {
+        "type": "p",
+        "value": "Wij bouwen aan een sterke toekomst voor onze kernen en een sterkere lokale economie waarin we durven te kiezen en de samenwerking met lokale ondernemers zoeken. In de zorg voor de toekomst is duurzaamheid een prioriteit."
+      }
+    ],
+    "alternatief": [],
+    "vo": []
+  },
+  {
+    "title": "Lokale energievoorzieningen en zelfvoorzienendheid",
+    "cda": [
+      {
+        "type": "p",
+        "value": "Er dient onderzocht te worden of delen van Vaals, Vijlen en Lemiers, dan wel de gehele gemeente Vaals, geheel of gedeeltelijk in zijn eigen energiebehoefte kan voorzien. In samenspraak met inwoners en ondernemers uit gemeente Vaals kan gezocht worden naar mogelijkheden."
+      }
+    ],
+    "lokaal": [
+      {
+        "type": "p",
+        "value": "De gemeente Vaals heeft de laatste jaren geïnvesteerd in de duurzaamheidsverbetering van gemeentelijke gebouwen. Isolatie en fotovoltaïsche oplossingen zijn waar mogelijk ingezet. Streven is om binnen 8 jaar energieneutraal te zijn. In 2040 zou zelfs de gehele gemeente energieneutraal moeten zijn."
+      }
+    ],
+    "nuijlies": [],
+    "pvda": [],
+    "alternatief": [],
+    "vo": []
   }
 ]

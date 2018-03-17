@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import arrow from '../../Assets/icon__arrow-down.svg'
 
 const Navigation = styled.nav`
   position: fixed;
@@ -52,7 +51,7 @@ const topics = [
     "value": "Duurzaamheid"
   },
   {
-    "key": "natuur_buitengebieden",
+    "key": "natuur-en-buitengebieden",
     "value": "Natuur en buitengebieden"
   },
   {
@@ -60,15 +59,15 @@ const topics = [
     "value": "Veiligheid"
   },
   {
-    "key": "voorzieningen",
-    "value": "Voorzieningen"
+    "key": "voorzieningen-locaties",
+    "value": "Voorzieningen en locaties"
   },
   {
-    "key": "toegankelijkheid",
+    "key": "toegankelijkheid-begaanbaarheid-bereikbaarheid",
     "value": "Toegankelijkheid, begaanbaarheid en bereikbaarheid"
   },
   {
-    "key": "cultuur",
+    "key": "cultuur-evenementen-jongeren",
     "value": "Cultuur, evenementen en jongeren"
   },
   {
@@ -76,11 +75,11 @@ const topics = [
     "value": "Financieel"
   },
   {
-    "key": "strategische_visie",
+    "key": "strategische-visie",
     "value": "Strategische visie"
   },
   {
-    "key": "ondernemers_winkelaanbod",
+    "key": "ondernemers-winkelaanbod",
     "value": "Ondernemers en winkelaanbod"
   },
   {
@@ -110,7 +109,7 @@ export default class Nav extends Component {
               <ListItem
                 key={topic.key}
                 active={this.props.active === topic.key}
-                onClick={() => this.props.setActive(topic.key)}>
+                onClick={() => this.props.setActive(topic.key, topic.value)}>
                 {topic.value}
               </ListItem>
           ))}

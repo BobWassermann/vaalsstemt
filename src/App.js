@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react'
 import styled, { injectGlobal } from 'styled-components'
-import Data from './Data.json'
 import Card from './Components/Card'
 import Nav from './Components/Nav'
 import Intro from './Data/intro'
@@ -13,7 +12,7 @@ injectGlobal`
 
   body {
     background-color: ${color_light};
-    color: #fff;
+    color: ${color_primary};
     font-family: 'basic-sans', sans-serif;
     font-size: 20px;
     line-height: 1.3em;
@@ -22,18 +21,15 @@ injectGlobal`
   }
 
   a {
-    color: #fff;
+    color: ${color_primary};
   }
 `
 
 const Wrap = styled.div`
-  width: calc(90% - 250px);
-  margin: 2% auto 0 calc(250px + 5%);
+  width: calc(96% - 250px);
+  margin: 2% auto 0 calc(250px + 2%);
   box-sizing: border-box;
   display: block;
-  padding: 5%;
-  background-color: ${color_primary};
-  border-radius: 10px;
 `
 
 const Title = styled.h3`
@@ -51,7 +47,12 @@ const Title = styled.h3`
 const Section = styled.section`
   display: flex;
   flex-flow: row wrap;
+  justify-content: space-between;
   margin-bottom: 80px;
+  padding: 40px;
+  background-color: #fff;
+  border: 1px solid ${color_primary};
+  border-radius: 10px;
 
   &:last-child {
     margin-bottom: 0;
@@ -72,26 +73,28 @@ export default class App extends Component {
     const path = window.location.pathname.replace('/', '')
     if (
       path &&
-      path === 'intro' ||
-      path === 'duurzaamheid' ||
-      path === 'natuur_buitengebieden' ||
-      path === 'veiligheid' ||
-      path === 'voorzieningen' ||
-      path === 'toegankelijkheid' ||
-      path === 'cultuur' ||
-      path === 'financieel' ||
-      path === 'strategische_visie' ||
-      path === 'ondernemers_winkelaanbod' ||
-      path === 'maatschappelijk' ||
-      path === 'participatie' ||
-      path === 'samenwerking' ||
-      path === 'educatie'
+      (
+        path === 'intro' ||
+        path === 'duurzaamheid' ||
+        path === 'natuur-en-buitengebieden' ||
+        path === 'veiligheid' ||
+        path === 'voorzieningen-locaties' ||
+        path === 'toegankelijkheid-begaanbaarheid-bereikbaarheid' ||
+        path === 'cultuur-evenementen-jongeren' ||
+        path === 'financieel' ||
+        path === 'strategische-visie' ||
+        path === 'ondernemers-winkelaanbod' ||
+        path === 'maatschappelijk' ||
+        path === 'participatie' ||
+        path === 'samenwerking' ||
+        path === 'educatie'
+      )
     ) {
       this.setActive(path)
     }
   }
 
-  setActive(active) {
+  setActive(active, t) {
     this.setState({
       active
     }, () => {
@@ -99,29 +102,67 @@ export default class App extends Component {
         const data = require(`./Data/${active}.json`)
         this.setState({
           data
-        }, () => window.history.pushState({}, null, active))
+        }, () => {
+          window.history.pushState({}, null, active)
+          window.scrollTo(0, 0)
+          document.title = `${t} — ${document.title}`
+        })
       } else {
         window.history.pushState({}, null, '/')
+        window.scrollTo(0, 0)
+        document.title = 'Vaals Stemt'
       }
     })
   }
 
   render() {
+    const { active, data } = this.state
+
     return (
       <Fragment>
-        <Nav active={this.state.active} setActive={active => this.setActive(active)} />
+        <Nav active={active} setActive={(active, title) => this.setActive(active, title)} />
+
         <Wrap>
-          { this.state.active === 'intro' && <Intro /> }
-          { this.state.active !== 'intro' &&
-            this.state.data.map((module, i) => (
+          { active === 'intro' &&
+            <Section>
+              <Intro />
+            </Section>
+          }
+
+          { active !== 'intro' &&
+            data.map((module, i) => (
               <Section key={`section-${i}`}>
                 <Title>{module.title}</Title>
-                <Card party="V&amp;O" data={module.vo} />
-                <Card party="CDA" data={module.cda} />
-                <Card party="Lokaal!" data={module.lokaal} />
-                <Card party="PvdA" data={module.pvda} />
-                <Card party="Het Alternatief" data={module.alternatief} />
-                <Card party="Nuj Lies Vroemen" data={module.nuijlies} />
+                <Card
+                  key={`card-${i}-party-vo`}
+                  party="V&amp;O"
+                  data={module.vo} />
+
+                <Card
+                  key={`card-${i}-party-cda`}
+                  party="CDA"
+                  data={module.cda} />
+
+                <Card
+                  key={`card-${i}-party-lokaal`}
+                  party="Lokaal!"
+                  data={module.lokaal} />
+
+                <Card
+                  key={`card-${i}-party-pvda`}
+                  party="PvdA"
+                  data={module.pvda} />
+
+                <Card
+                  key={`card-${i}-party-alternatief`}
+                  party="Het Alternatief"
+                  data={module.alternatief} />
+
+                <Card
+                  key={`card-${i}-party-nujlies`}
+                  party="Nuj Lies Vroemen"
+                  data={module.nuijlies} />
+
               </Section>
             ))
           }
