@@ -4,6 +4,7 @@ import Card from './Components/Card'
 import Nav from './Components/Nav'
 import Intro from './Data/intro'
 import topics from './topics'
+import parties from './parties'
 
 const color_primary = '#3B19C3'
 const color_light = '#F4F2FF'
@@ -108,7 +109,8 @@ export default class App extends Component {
         nujlies: 0
       },
       data: [],
-      mobileNavOpen: false
+      mobileNavOpen: false,
+      partes: parties
     }
   }
 
@@ -139,11 +141,16 @@ export default class App extends Component {
     if (window.innerWidth < 900) {
       this.setActiveLayout('underneath')
     }
+
+    this.setState({
+      parties: this.shuffleArray(parties)
+    })
   }
 
   setActive(active, t) {
     this.setState({
-      active
+      active,
+      parties: this.shuffleArray(parties)
     }, () => {
       if (active !== 'intro') {
         const data = require(`./Data/${active}.json`)
@@ -181,7 +188,6 @@ export default class App extends Component {
       this.state.activeCards[topic][card] === party
     ) {
       let activeCards = this.state.activeCards
-      let counter = this.state.counter[party]
       delete activeCards[topic][card]
       this.setState({
         activeCards,
@@ -247,8 +253,13 @@ export default class App extends Component {
     }
   }
 
+  shuffleArray(o) {
+    for (var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    return o;
+  }
+
   render() {
-    const { active, activeCards, activeLayout, counter, data, mobileNavOpen } = this.state
+    const { active, activeCards, activeLayout, counter, data, mobileNavOpen, parties } = this.state
 
     return (
       <Fragment>
@@ -286,66 +297,18 @@ export default class App extends Component {
             data.map((module, i) => (
               <Section key={`section-${i}`}>
                 <Title>{module.title}</Title>
-                <Card
-                  key={`card-${i}-party-vo`}
-                  cardIndex={i}
-                  party="V&amp;O"
-                  data={module.vo}
-                  activeCards={activeCards}
-                  activeLayout={activeLayout}
-                  activeTopic={active}
-                  setPicker={(card, party, topic) => this.setPicker(card, party, topic)} />
-
-                <Card
-                  key={`card-${i}-party-cda`}
-                  cardIndex={i}
-                  party="CDA"
-                  data={module.cda}
-                  activeCards={activeCards}
-                  activeLayout={activeLayout}
-                  activeTopic={active}
-                  setPicker={(card, party, topic) => this.setPicker(card, party, topic)} />
-
-                <Card
-                  key={`card-${i}-party-lokaal`}
-                  cardIndex={i}
-                  party="Lokaal!"
-                  data={module.lokaal}
-                  activeCards={activeCards}
-                  activeLayout={activeLayout}
-                  activeTopic={active}
-                  setPicker={(card, party, topic) => this.setPicker(card, party, topic)} />
-
-                <Card
-                  key={`card-${i}-party-pvda`}
-                  cardIndex={i}
-                  party="PvdA"
-                  data={module.pvda}
-                  activeCards={activeCards}
-                  activeLayout={activeLayout}
-                  activeTopic={active}
-                  setPicker={(card, party, topic) => this.setPicker(card, party, topic)} />
-
-                <Card
-                  key={`card-${i}-party-alternatief`}
-                  cardIndex={i}
-                  party="Het Alternatief"
-                  data={module.alternatief}
-                  activeCards={activeCards}
-                  activeLayout={activeLayout}
-                  activeTopic={active}
-                  setPicker={(card, party, topic) => this.setPicker(card, party, topic)} />
-
-                <Card
-                  key={`card-${i}-party-nujlies`}
-                  cardIndex={i}
-                  party="Nuj Lies Vroemen"
-                  data={module.nuijlies}
-                  activeCards={activeCards}
-                  activeLayout={activeLayout}
-                  activeTopic={active}
-                  setPicker={(card, party, topic) => this.setPicker(card, party, topic)} />
-
+                {parties.map(party =>
+                  <Card
+                    key={`card-${i}-party-${party.key}`}
+                    cardIndex={i}
+                    party={party.value}
+                    data={module[party.key]}
+                    activeCards={activeCards}
+                    activeLayout={activeLayout}
+                    activeTopic={active}
+                    setPicker={(card, party, topic) => this.setPicker(card, party, topic)}
+                  />
+                )}
               </Section>
             ))
           }
