@@ -79,14 +79,23 @@ export default class Card extends Component {
           {data.length > 0 && data.map((x, i) => {
             switch(x.type) {
               case 'p': {
-                return <p key={`module-${i}`}>{x.value}</p>
+                return (
+                  <p
+                    key={`module-${i}`}
+                    style={{
+                      opacity: (x.hasOwnProperty('later') && x.later === true) ? '0.4' : '1',
+                      fontStyle: (x.hasOwnProperty('later') && x.later === true) ? 'italic' : 'normal'
+                    }}>
+                      {x.value}
+                  </p>
+                )
               }
 
               case 'list': {
                 return (
                   <ul key={`module-${i}`}>
                     {x.value.map((y, j) =>
-                      <li key={`module-list-item-${j}`}>{y}</li>
+                      <li key={`module-list-item-${j}`} later={x.hasOwnProperty('later') && x.later === true}>{y}</li>
                     )}
                   </ul>
                 )

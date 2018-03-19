@@ -1,7 +1,12 @@
 [
   {
     "title": "Ondernemers en winkelaanbod",
-    "cda": [],
+    "cda": [
+      {
+        "type": "p",
+        "value": "Lokaal ondernemerschap binnen de eigen gemeentegrenzen moet gepromoot, gestimuleerd en gefaciliteerd worden. Lokale ondernemers dienen bij gemeentelijke aanbestedingen zo veel als mogelijk te prevaleren boven niet-lokale ondernemers. Lokale producten moeten algemeen verkrijgbaar en prijstechnisch en kwalitatief concurrerend worden voor alle inwoners. Hiermee worden ook onnodige verkeersbewegingen én milieubelasting voorkomen."
+      }
+    ],
     "lokaal": [
       {
         "type": "p",
@@ -19,6 +24,10 @@
       {
         "type": "p",
         "value": "De economie van Vaals drijft op het toerisme en shoppers in het weekend. De economie moet een derde pijler krijgen: startende ondernemers, die al dan niet gelieerd zijn aan de RWTH. Deze moeten ruimte krijgen om binnen Vaals hun bedrijfjes op te starten en uit te bouwen."
+      },
+      {
+        "type": "p",
+        "value": "Ook willen we ondernemers en non-pro torganisaties meer ruimte geven voor nieuwe initiatieven. We willen een mix aan functies gaan toestaan zodat ook b.v. een kapperszaak, een slijterij of een visboer een hapje en een drankje kan aanbieden. Zo kunnen we het centrum van Vaals aantrekkelijker maken voor onze inwoners, onze bezoekers en toeri- sten. Een dagje uit in Vaals wordt een beleving op zich, waar je lekker in de watten wordt gelegd. In den lande zijn al een aantal pilots gedraaid en worden nieuwe uitgezet. Als gemeente moeten we samen met ondernemende mensen kijken naar waar zij bij het ondernemen behoefte aan hebben / tegen welke regels zij aanlopen. De gemeente moet kijken of deze obstakels (lokale regels) kunnen worden opgeruimd."
       }
     ],
     "vo": [

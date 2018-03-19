@@ -1,7 +1,12 @@
 [
   {
     "title": "Samenwerking in de regio",
-    "cda": [],
+    "cda": [
+      {
+        "type": "p",
+        "value": "CDA VAALS blijft streven naar een zelfstandige en kwalitatief goed functionerende gemeente die de inwoners kwalitatief van dienst kan zijn en die alle noodzakelijke veranderingen in de gemeente in alle opzichten kwalitatief kan realiseren. Om de dienstverlening aan de inwoners kwalitatief te borgen dient de uitvoering dicht bij de inwoners centraal uitgevoerd te blijven. Overstijgende zaken worden met regionale partners aangepakt, waardoor de kwaliteit van dienstverlening richting onze burgers te allen tijde gewaarborgd blijft."
+      }
+    ],
     "lokaal": [
       {
         "type": "p",

@@ -1,7 +1,12 @@
 [
   {
     "title": "Maatschappelijk",
-    "cda": [],
+    "cda": [
+      {
+        "type": "p",
+        "value": "Het CDA zet in op betrokken burgers om de onderlinge verbondenheid te versterken. Er moet betrokkenheid zijn tussen generaties en tussen arm en rijk. We leven niet alleen voor onszelf, maar we zijn pas mens door met elkaar te leven. De overheid zorgt voor de basis van sociale zekerheid: voor iedereen is er gezondheidszorg, onderwijs en inkomen. De persoonlijke factor mag daarbij niet uit het oog worden verloren. Het CDA vindt onderlinge verbondenheid tussen mensen belangrijk."
+      }
+    ],
     "lokaal": [],
     "nujlies": [
       {
@@ -33,7 +38,16 @@
   },
   {
     "title": "Gehandicapten",
-    "cda": [],
+    "cda": [
+      {
+        "type": "p",
+        "value": "Om plezierig en met welbehagen in onze gemeente te leven, is het fundamenteel dat gebouwen, wegen, trottoirs, paden en de openbare ruimte voor iedereen toegankelijk, begaanbaar en dus goed onderhouden zijn. Ook de bereikbaarheid binnen, van en naar de afzonderlijke kernen via het Openbaar Vervoer verdient extra aandacht. Indien we willen dat de kernen leefbaar blijven, dienen de voorzieningen in stand en zelfs uitgebreid te worden."
+      },
+      {
+        "type": "p",
+        "value": "CDA VAALS wil dat Vaals, Vijlen en Lemiers plekken worden en blijven waar kinderen, jongeren, jonge gezinnen, volwassenen en ouderen samen op een verbindende manier met elkaar kunnen leven. Daarbij moet voldoende aandacht zijn voor mindervaliden en mensen die vanwege chronische aandoeningen beperkt zijn in hun bewegingsvrijheid en in mindere mate kunnen participeren in onze gemeenschappen."
+      }
+    ],
     "lokaal": [
       {
         "type": "p",

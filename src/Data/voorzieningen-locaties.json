@@ -38,7 +38,18 @@
   },
   {
     "title": "Julianaplein",
-    "cda": [],
+    "cda": [
+      {
+        "type": "p",
+        "value": "Het blijkt dat met name de kale oplevering van winkelruimtes een te grote drempel is om deze ruimtes ingevuld te krijgen.",
+        "later": true
+      },
+      {
+        "type": "p",
+        "value": "Volgens het CDA-Vaals moet de gemeente na de verkiezingen kijken hoe en in welke vorm de gemeente een bijdrage kan leveren om de leegstaande plekken ingevuld te krijgen.",
+        "later": true
+      }
+    ],
     "lokaal": [
       {
         "type": "p",
@@ -79,7 +90,18 @@
   },
   {
     "title": "Katzensprung II / ValiVerte",
-    "cda": [],
+    "cda": [
+      {
+        "type": "p",
+        "value": "Studentenhuisvesting: Het CDA-Vaals is van mening dat studentenhuisvesting na Katzensprung II z’n maximum heeft bereikt. Het (nog te bouwen) complex op het voormalige Hekkert-terrein is wat betreft het CDA overbodig en deze gronden hadden wat het CDA-Vaals betreft beter besteed kunnen worden voor andere doelgroepen uit de Vaalser bevolking.",
+        "later": true
+      },
+      {
+        "type": "p",
+        "value": "Valiverte: Er dienen meer bouwmogelijkheden voor jonge inwoners en starters gecreëerd te worden. In overweging moet worden genomen of erfpachtconstructies tussen gemeente en de nieuwe bewoners een positief effect op de financiële mogelijkheden voor deze doelgroep heeft, waardoor de vestiging van jonge gezinnen in onze gemeente gestimuleerd wordt.",
+        "later": true
+      }
+    ],
     "lokaal": [
       {
         "type": "p",
@@ -103,7 +125,13 @@
   },
   {
     "title": "Zorgwoningen",
-    "cda": [],
+    "cda": [
+      {
+        "type": "p",
+        "value": "Recentelijk heeft de gemeente Vaals het Esso-Terrein aangekocht. Naast mogelijke verkeersmaatregelen, voor een betere afwikkeling van het verkeer komende vanaf de Bosstraat mogelijk te maken, ziet het CDA-Vaals op het voormalige Esso-terrein een ideale plek om centraal in Vaals nog zorgwoningen te realiseren.",
+        "later": true
+      }
+    ],
     "lokaal": [
       {
         "type": "p",

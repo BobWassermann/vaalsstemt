@@ -1,7 +1,12 @@
 [
   {
     "title": "Burgerparticipatie",
-    "cda": [],
+    "cda": [
+      {
+        "type": "p",
+        "value": "De kernen Vaals, Vijlen en Lemiers dienen op een gestructureerde wijze zeggenschap te krijgen over lokaal (kern) beleid. Dit dient bij voorkeur via (gekozen/geselecteerde/benoemde) burgerpanels te gebeuren, maar kan in de aanloopfase ook via geplande inspreekavonden op locatie, waarbij alle inwoners uitgenodigd worden om ideeën en verbeteringen kenbaar te maken."
+      }
+    ],
     "lokaal": [
       {
         "type": "p",
@@ -24,7 +29,24 @@
         "value": "De PvdA vindt wijkdeals een belangrijke middel om burgers bij hun directe woonomgeving te betrekken en medeverantwoordelijk te maken. Wij willen de bewoners zo vroeg mogelijk betrekken bij veranderingen in hun woon- en leefwereld. Zij dienen hier mee te beslissen, met als consequentie dat zij dan ook medeverantwoordelijkheid op zich nemen. Burgerparticipatie in optima forma."
       }
     ],
-    "alternatief": [],
+    "alternatief": [
+      {
+        "type": "p",
+        "value": "Het Alternatief wil het referendum invoeren. Dat kan binnen de huidige wet indien wordt voldaan aan enkele voor- waarden:"
+      },
+      {
+        "type": "list",
+        "value": [
+          "De raad bepaalt of er een raadplegend referendum wordt gehouden;",
+          "De raadsleden bepalen individueel of zij de uitslag zullen overnemen;",
+          "De raad neemt pas een besluit nadat het referendum is gehouden."
+        ]
+      },
+      {
+        "type": "p",
+        "value": "De raad kan dan zelf, op verzoek van inwoners, ervoor kiezen om bepaalde besluiten eerst voor te leggen aan de bevolking. Het referendum kan worden ingezet bij grote projecten en ingrijpende besluiten."
+      }
+    ],
     "vo": [
       {
         "type": "p",
